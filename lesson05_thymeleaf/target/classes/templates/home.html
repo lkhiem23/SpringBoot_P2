@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:replace = "fragments/layout::head(${title})">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HOME</title>
+
+</head>
+
+<body>
+
+<!--   SỬ DỤNG Header Fragment    -->
+<header th:replace="fragments/layout :: header"></header>
+<!--  Nội dung chính của trang chủ  -->
+  <section  class="container" style="min-height:268px">
+    <div class="row">
+      <h1>Đây là trang chủ</h1>
+    </div>
+
+<!--  Sử dụng Menu Fragment / Chèn menu  -->
+    <nav th:insert="fragments/layout::menu"></nav>
+  </section>
+
+<!-- Sử dụng Footer Fragment -->
+  <footer th:replace="fragments/layout::footer"></footer>
+
+</body>
+</html>
