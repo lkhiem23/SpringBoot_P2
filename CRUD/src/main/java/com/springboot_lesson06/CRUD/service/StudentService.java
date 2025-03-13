@@ -35,7 +35,9 @@ public class StudentService {
 
         return Optional.of(studentDTO);
     }
-
+    
+// Create -----------------------------------------
+    
     public boolean save(StudentDTO studentDTO ) {
         Student student = new Student();
         student.setName(studentDTO.getName());
@@ -49,6 +51,7 @@ public class StudentService {
         }
     }
 
+// Update -----------------------------------------
     public Student updateStudentById(StudentDTO updateStudent, Long id) {
         return studentResponsitory.findById(id).map(student -> {
             student.setName(updateStudent.getName());
@@ -58,6 +61,7 @@ public class StudentService {
         }).orElseThrow(()->new IllegalIdentifierException("Invalid student ID: " + id));
     }
 
+// Delete -----------------------------------------
     public void delete(Long id){
         studentResponsitory.deleteById(id);
     }
