@@ -19,6 +19,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    // Validation
     @NotBlank(message = "Full Name cannot be left blank")
     @Size(min = 2, message = "Full name must be at least 3 characters")
     private String fullName;
