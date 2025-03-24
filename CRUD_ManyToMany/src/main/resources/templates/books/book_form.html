@@ -60,14 +60,20 @@
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="" class="col-sm-2 col-form-label">Quantity:</label>
-                        <div class="col-sm-10 d-flex" >
-                            <div th:each="author:${authors}" class="mx-2 px-2">
+                        <label class="col-sm-2 col-form-label">Tác giả:</label>
+                        <div class="col-sm-10">
+                            <div th:each="author:${authors}" class="form-check">
                                 <input type="checkbox" name="authorIds"
-                                       th:attr="id='chkAuth_'+${author.id}"
                                        th:value="${author.id}"
                                        th:checked="${books.authors.contains(author)}">
-                                       <label th:text= "${author.getName()}">Author Name</label>
+                                <label th:text="${author.getName()}">Author Name</label>
+
+                                <!-- Radio button để chọn chủ biên -->
+                                <input type="radio" name="editorId"
+                                       th:value="${author.id}"
+                                       th:checked="${books.authors.contains(author) and author.isEditor()}"
+                                       class="ms-2">
+                                <label>Chủ biên</label>
                             </div>
                         </div>
                     </div>
