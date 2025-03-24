@@ -27,6 +27,9 @@ public class Author {
     private String address;
     private Boolean isActive;
 
+    @Transient // Không lưu vào bảng `author`, chỉ dùng để xử lý tạm thời
+    private boolean isEditor;
+    
     // Tạo mối quan hệ với bảng Book
     @ManyToMany(mappedBy = "authors")
 
