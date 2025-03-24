@@ -38,11 +38,27 @@ public class BookController {
     }
 
     //Submit New Book
-    @PostMapping("/new")
-    public String saveBook(@ModelAttribute Book book){
-        // Form xử lí thêm mới
+     @PostMapping("/new")
+    public String saveBook(@ModelAttribute Book book,
+                           @RequestParam(value = "authorIds", required = false) List<Long> authorIds,
+                           @RequestParam(value = "editorId", required = false) Long editorId) {
+        if (authorIds != null) {
+            List<Author> selectedAuthors = new ArrayList<>();
 
+            for (Long authorId : authorIds) {
+                Author author = authorService.getAuthorById(authorId);
+                if (author != null) {
+                    boolean isEditor = (editorId != null && editorId.equals(authorId));
+                    author.setEditor(isEditor);
+                    selectedAuthors.add(author);
+                }
+            }
 
-        return "redirect:/books/";
+            book.setAuthors(selectedAuthors);
+        }
+
+        bookService.saveBook(book);
+        return "redirect:/books";
     }
+
 }
